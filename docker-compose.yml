@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: wordpress_db
+    environment:
+      MYSQL_ROOT_PASSWORD: wordpress_root_password
+      MYSQL_DATABASE: wordpress_db
+      MYSQL_USER: wordpress_user
+      MYSQL_PASSWORD: wordpress_password
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - wordpress_network
+
+  wordpress:
+    image: wordpress:latest
+    container_name: wordpress_app
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress_user
+      WORDPRESS_DB_PASSWORD: wordpress_password
+      WORDPRESS_DB_NAME: wordpress_db
+      WORDPRESS_DEBUG: 1
+    volumes:
+      - wordpress_data:/var/www/html
+    depends_on:
+      - db
+    networks:
+      - wordpress_network
+
+  frontend:
+    image: wordpress-blog-frontend:dev
+    container_name: nextjs_frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./wordpress-blog:/app
+    environment:
+      NEXT_PUBLIC_WORDPRESS_API_URL: http://wordpress:80/wp-json/wp/v2/
+    depends_on:
+      - wordpress
+    networks:
+      - wordpress_network
+    command: bun run dev
+
+networks:
+  wordpress_network:
+    driver: bridge
+
+volumes:
+  db_data:
+  wordpress_data:

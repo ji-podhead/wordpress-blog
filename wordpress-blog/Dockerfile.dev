@@ -1,0 +1,19 @@
+# use the official Bun image
+FROM oven/bun:1 AS base
+WORKDIR /app
+
+# Install dependencies in a separate stage to leverage Docker cache
+FROM base AS deps
+COPY package.json bun.lock ./
+RUN bun install --frozen-lockfile
+
+# Development stage
+FROM base AS development
+COPY --from=deps /app/node_modules ./node_modules
+# The application code is mounted via volume in docker-compose.yml
+# So we don't need to copy it here for development.
+
+EXPOSE 3000
+
+# Command to run the development server (overridden by docker-compose)
+CMD ["bun", "run", "dev"]
