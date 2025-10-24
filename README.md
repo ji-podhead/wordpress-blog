@@ -2,6 +2,57 @@
 
 This project combines a self-hosted WordPress backend with a Next.js frontend, managed via Docker Compose.
 
+---
+
+## Preview
+### wordpress admin page
+<img width="1182" height="749" alt="grafik" src="https://github.com/user-attachments/assets/3f169066-d985-4a40-97ee-9bd398bcbc72" />
+
+> source: ![localhost:8080/wp-login](http://localhost:8080/wp-login) | ![localhost:8080/wp-admin](http://localhost:8080/wp-admin)
+
+- after login: 
+
+<img width="1720" height="1156" alt="grafik" src="https://github.com/user-attachments/assets/c2f0eae3-20f5-418a-a0a2-8183bc00f0f5" />
+
+---
+
+###  wordpress editor
+
+<img width="1720" height="580" alt="grafik" src="https://github.com/user-attachments/assets/4589e6c4-b75f-4f05-bd8a-19a4ba64191f" />
+
+> source: [localhost:8080/wp-admin/edit.php](http://localhost:8080/wp-admin/edit.php)
+> <br> here you can edit, delete and create new blog posts
+
+- adding a new post:
+  <img width="1001" height="464" alt="grafik" src="https://github.com/user-attachments/assets/cd436f7e-ecb8-42c3-be82-a3232ef36d77" />
+> ***you can even use markdown syntax here!***
+
+--- 
+
+### Demo Blog
+
+
+<img width="1720" height="1119" alt="grafik" src="https://github.com/user-attachments/assets/6180dcfc-97c7-42c6-b514-d3de0ee466cf" />
+
+> source: [localhost:8080/](http://localhost:8080/)
+
+---
+
+### React NextJs Example Project
+
+<img width="1720" height="314" alt="grafik" src="https://github.com/user-attachments/assets/dc90528b-c3c8-431c-801b-9e12a7d0e043" />
+
+> source: [localhost:3000/](http://localhost:3000/)
+
+- example post in react:
+
+<img width="1610" height="497" alt="grafik" src="https://github.com/user-attachments/assets/738eb865-914a-48b5-95f3-13522d503f77" />
+
+
+> I just used an example image here. Notice that we dont have all the features that we have in the wordpress demo blog. We could add them, but it might not be required. Keep in mind that comes with an additional attack vector.
+
+---
+
 ## Project Structure
 
 *   `docker-compose.yml`: Defines the services for MySQL database, WordPress backend, and Next.js frontend.
